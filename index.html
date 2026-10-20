@@ -22,6 +22,10 @@
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -34,6 +38,17 @@ body {
   background:
     radial-gradient(ellipse at 50% 0%, #493719, transparent 48%),
     radial-gradient(ellipse at bottom, #1c160a, #080808 65%);
+  animation: themeBackground 8s ease-in-out infinite;
+}
+
+/* GOLDEN + BLACK THEME */
+@keyframes themeBackground {
+  0%, 100% {
+    background-color: #080808;
+  }
+  50% {
+    background-color: #211a0b;
+  }
 }
 
 .card {
@@ -47,6 +62,18 @@ body {
   border-radius: 27px;
   background: linear-gradient(145deg, #191919, #0b0b0b);
   box-shadow: 0 25px 75px #000b, 0 0 30px #dfb95712;
+  animation: cardGlow 6s ease-in-out infinite;
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    border-color: #80632d;
+    box-shadow: 0 25px 75px #000b, 0 0 20px #dfb95712;
+  }
+  50% {
+    border-color: #dfb957;
+    box-shadow: 0 25px 75px #000b, 0 0 35px #dfb95730;
+  }
 }
 
 .card::before {
@@ -57,6 +84,82 @@ body {
   right: 12%;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: goldLine 4s ease-in-out infinite;
+}
+
+@keyframes goldLine {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+
+/* WELCOME / SALAM SCREEN */
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, #35280e, #080808 72%);
+  animation: welcomeFade 1s ease 3.2s forwards;
+}
+
+.welcome-content {
+  width: 100%;
+  max-width: 600px;
+  animation: welcomeText 1s ease both;
+}
+
+.welcome-line {
+  width: 100px;
+  height: 2px;
+  margin: 0 auto 28px;
+  background: linear-gradient(90deg, transparent, #dfb957, transparent);
+}
+
+.welcome-title {
+  margin: 0;
+  color: #f3d88b;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(25px, 6vw, 42px);
+  line-height: 1.5;
+  text-shadow: 0 0 25px #dfb95725;
+}
+
+.welcome-subtitle {
+  margin: 18px 0 0;
+  color: #d1c5a5;
+  font-size: 12px;
+  letter-spacing: 4px;
+}
+
+.welcome-bottom-line {
+  width: 100px;
+  height: 2px;
+  margin: 28px auto 0;
+  background: linear-gradient(90deg, transparent, #dfb957, transparent);
+}
+
+@keyframes welcomeText {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcomeFade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .eyebrow {
@@ -64,18 +167,18 @@ body {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 4px;
-}  
-
-.
+}
 
 .avatar-wrap {
-  width: 145px;
-  height: 145px;
+  width: 125px;
+  height: 125px;
   margin: 26px auto 20px;
-  padding: 5px;
+  padding: 4px;
   border: 1px solid var(--gold);
   border-radius: 50%;
   box-shadow: 0 0 0 7px #dfb9570d, 0 0 35px #dfb95730;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
 .avatar {
@@ -83,11 +186,11 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 50%;
+  aspect-ratio: 1 / 1;
   background: #1b1b1b;
 }
-  
-  
 
 h1 {
   margin: 8px 0;
@@ -95,9 +198,15 @@ h1 {
   font-size: 36px;
   letter-spacing: 2px;
   background: linear-gradient(100deg, #fff2c4, #d4a746, #fff0b9);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: titleShine 5s linear infinite;
+}
+
+@keyframes titleShine {
+  to { background-position: 200% center; }
 }
 
 .role {
@@ -207,11 +316,12 @@ footer span {
 @media (max-width: 360px) {
   .card { padding: 27px 15px 20px; }
   h1 { font-size: 30px; }
-  .avatar-wrap { width: 125px; height: 125px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition: none !important;
   }
 }
@@ -219,34 +329,46 @@ footer span {
 </head>
 
 <body>
+
+<!-- WELCOME SALAM: SHOWS FIRST -->
+<div class="welcome-screen" aria-label="Welcome">
+  <div class="welcome-content">
+    <div class="welcome-line"></div>
+    <h2 class="welcome-title">
+      Assalamu Alaikum wa<br>
+      Rahmatullahi wa Barakatuh
+    </h2>
+    <p class="welcome-subtitle">WELCOME TO MY OFFICIAL PROFILE</p>
+    <div class="welcome-bottom-line"></div>
+  </div>
+</div>
+
 <main class="card">
 
   <div class="eyebrow">PERSONAL • OFFICIAL</div>
 
-  <!-- Upload your actual photo as profile.jpg -->
-  
-<div class="avatar-wrap">
-  <img
-    class="avatar"
-    src="./file_00000000f2ec8208a45f9537a43b74eb.jpg"
-    alt="MD JABED Profile Photo"
-    onerror="this.alt='Profile photo not found. Check the filename.'"
-  >
-</div>
-  
+  <!-- Keep your photo file in the same folder as index.html -->
+  <div class="avatar-wrap">
+    <img
+      class="avatar"
+      src="profile.jpg"
+      alt="MD JABED"
+      onerror="this.onerror=null;this.src='https://placehold.co/300x300/171717/dfb957?text=MD+JABED';"
+    >
+  </div>
 
   <h1>MD JABED</h1>
   <div class="role">DIGITAL CREATOR · BANGLADESH</div>
 
   <p class="bio">
     Welcome to my official profile.<br>
-  
+    Stay focused. Stay original. Let your work speak.
+  </p>
 
   <div class="section-title">CONNECT WITH ME</div>
 
   <nav class="links" aria-label="Social media and contact links">
 
-    <!-- FACEBOOK -->
     <a class="social"
        href="https://www.facebook.com/share/1BTEGK6dZX/"
        target="_blank" rel="noopener noreferrer">
@@ -258,7 +380,6 @@ footer span {
       <span class="arrow">↗</span>
     </a>
 
-    <!-- TIKTOK -->
     <a class="social"
        href="https://www.tiktok.com/@m.r.jabed.2.0"
        target="_blank" rel="noopener noreferrer">
@@ -270,7 +391,6 @@ footer span {
       <span class="arrow">↗</span>
     </a>
 
-    <!-- WHATSAPP -->
     <a class="social"
        href="https://wa.me/8801843373682"
        target="_blank" rel="noopener noreferrer">
@@ -282,7 +402,17 @@ footer span {
       <span class="arrow">↗</span>
     </a>
 
-    <!-- CALL: number is not shown as visible page text -->
+    <a class="social"
+       href="https://imo.im/"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon">◎</span>
+      <span class="details">
+        <span class="link-title">IMO</span>
+        <div class="link-subtitle">Connect with me</div>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
     <a class="social"
        href="tel:+8801843373682"
        aria-label="Call MD JABED">
@@ -312,5 +442,6 @@ footer span {
 document.getElementById('year').textContent =
   new Date().getFullYear();
 </script>
+
 </body>
 </html>

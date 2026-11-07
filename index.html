@@ -9,25 +9,15 @@
 <title>MD JABED | Official Profile</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   PREMIUM BLACK & GOLD THEME
-========================= */
-
 :root {
   --bg: #080808;
-  --card: #11110f;
   --gold: #d8ad55;
   --gold-light: #ffe7a6;
-  --gold-dark: #8e6828;
   --text: #f8f4e9;
   --muted: #aaa397;
-  --border: rgba(216,173,85,.28);
 }
 
 * {
@@ -47,29 +37,15 @@ body {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
 
   background:
-    radial-gradient(ellipse at 50% 0%, #342710 0%, transparent 48%),
-    linear-gradient(145deg, #090909, #050505 75%);
-
-  animation: backgroundGlow 7s ease-in-out infinite alternate;
+    radial-gradient(ellipse at 50% 0%, #342710, transparent 48%),
+    linear-gradient(145deg, #090909, #050505);
 }
 
-@keyframes backgroundGlow {
-  from {
-    background-color: #080808;
-  }
-  to {
-    background-color: #100d07;
-  }
-}
-
-/* =========================
-   WELCOME SCREEN
-========================= */
+/* WELCOME SCREEN */
 
 .welcome-screen {
   position: fixed;
@@ -80,20 +56,19 @@ body {
   align-items: center;
   justify-content: center;
 
-  padding: 25px;
-  text-align: center;
+  padding: 20px;
+  overflow: hidden;
 
   background:
     radial-gradient(ellipse at center, #30240e, #080808 75%);
 
-  animation: welcomeExit 1.2s ease 4.5s forwards;
+  animation: welcomeExit 1s ease 5.2s forwards;
 }
 
 .welcome-content {
   width: 100%;
   max-width: 650px;
-
-  animation: welcomeEntrance 1.4s cubic-bezier(.2,.8,.2,1) both;
+  text-align: center;
 }
 
 .welcome-line {
@@ -104,72 +79,70 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--gold-light),
-    var(--gold),
+    #8e6828,
+    #fff0b9,
+    #d8ad55,
     transparent
   );
 
-  animation: lineExpand 1.5s ease .5s forwards;
+  box-shadow: 0 0 15px #d8ad5580;
+
+  animation: lineExpand 1.3s ease .2s forwards;
 }
 
 .welcome-title {
+  display: inline-block;
+  max-width: 100%;
+
+  overflow: hidden;
+  white-space: nowrap;
+
   color: var(--gold-light);
-
   font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 6vw, 43px);
-  line-height: 1.5;
+  font-size: clamp(10px, 3.5vw, 23px);
+  font-weight: 700;
+  letter-spacing: .5px;
 
-  text-shadow: 0 0 25px #d8ad5560;
+  text-shadow: 0 0 25px #d8ad5570;
 
-  animation: titleAppear 1.5s ease .6s both;
+  width: 0;
+  opacity: 1;
+
+  animation:
+    textReveal 2.8s steps(42, end) .5s forwards,
+    textDisappear .8s ease 4s forwards;
 }
 
 .welcome-subtitle {
-  margin-top: 20px;
+  margin-top: 22px;
 
   color: #c8b88f;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
   letter-spacing: 4px;
 
   opacity: 0;
-  animation: subtitleAppear 1.2s ease 1.6s forwards;
+
+  animation: subtitleAppear 1s ease 1.2s forwards;
 }
 
-@keyframes welcomeEntrance {
-  from {
+@keyframes textReveal {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes textDisappear {
+  to {
     opacity: 0;
-    transform: translateY(35px) scale(.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes titleAppear {
-  from {
-    opacity: 0;
-    letter-spacing: 8px;
-    filter: blur(8px);
-  }
-  to {
-    opacity: 1;
-    letter-spacing: 1px;
-    filter: blur(0);
-  }
-}
-
-@keyframes subtitleAppear {
-  to {
-    opacity: 1;
+    transform: translateY(-12px);
   }
 }
 
 @keyframes lineExpand {
-  to {
-    width: min(250px, 75%);
-  }
+  to { width: min(250px, 75%); }
+}
+
+@keyframes subtitleAppear {
+  to { opacity: 1; }
 }
 
 @keyframes welcomeExit {
@@ -180,9 +153,7 @@ body {
   }
 }
 
-/* =========================
-   MAIN PROFILE CARD
-========================= */
+/* MAIN CARD */
 
 .card {
   position: relative;
@@ -193,24 +164,23 @@ body {
 
   padding: 34px 23px 25px;
   text-align: center;
-
   overflow: hidden;
 
-  border: 1px solid var(--border);
+  border: 1px solid #80632d;
   border-radius: 25px;
 
-  background:
-    linear-gradient(145deg, #191814, #0b0b0a 65%);
+  background: linear-gradient(145deg, #191814, #0b0b0a 65%);
 
   box-shadow:
     0 25px 80px #000b,
-    0 0 30px #d8ad5510;
+    0 0 25px #d8ad5520;
 
-  animation: cardEntrance 1.2s ease 4.7s both,
-             cardGlow 7s ease-in-out infinite alternate;
+  animation:
+    cardEntrance 1.2s ease 5.3s both,
+    cardGlow 7s ease-in-out infinite alternate;
 }
 
-/* GOLDEN LIGHT SWEEP */
+/* GOLDEN LIGHT MOVEMENT */
 
 .card::before {
   content: "";
@@ -222,15 +192,15 @@ body {
   width: 65%;
   height: 100%;
 
-  pointer-events: none;
   z-index: -1;
+  pointer-events: none;
 
   background: linear-gradient(
     110deg,
     transparent,
-    rgba(255,215,130,.035),
-    rgba(255,225,160,.13),
-    rgba(216,173,85,.04),
+    rgba(255,215,130,.04),
+    rgba(255,225,160,.15),
+    rgba(216,173,85,.05),
     transparent
   );
 
@@ -242,6 +212,7 @@ body {
 .card::after {
   content: "";
   position: absolute;
+
   top: 0;
   left: 12%;
   right: 12%;
@@ -251,9 +222,9 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--gold-dark),
-    var(--gold-light),
-    var(--gold),
+    #8e6828,
+    #fff0b9,
+    #d8ad55,
     transparent
   );
 
@@ -261,22 +232,18 @@ body {
 }
 
 @keyframes goldenSweep {
-  0%, 15% {
-    left: -120%;
-  }
-  65%, 100% {
-    left: 160%;
-  }
+  0%, 15% { left: -120%; }
+  65%, 100% { left: 160%; }
 }
 
 @keyframes cardGlow {
   from {
-    border-color: rgba(216,173,85,.20);
+    border-color: #80632d;
     box-shadow: 0 25px 80px #000b, 0 0 15px #d8ad5510;
   }
   to {
-    border-color: rgba(255,220,145,.65);
-    box-shadow: 0 25px 80px #000b, 0 0 32px #d8ad5528;
+    border-color: #ffe0a0;
+    box-shadow: 0 25px 80px #000b, 0 0 35px #d8ad5530;
   }
 }
 
@@ -291,39 +258,44 @@ body {
   }
 }
 
-/* =========================
-   TOP LABEL
-========================= */
+/* TOP LABEL */
 
 .eyebrow {
   color: var(--gold);
-
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 4px;
 }
 
-/* =========================
-   PROFILE IMAGE
-========================= */
+/* PROFILE IMAGE */
 
 .avatar-wrap {
-  position: relative;
-
   width: 145px;
   height: 145px;
 
   margin: 27px auto 20px;
   padding: 5px;
 
-  border-radius: 50%;
   border: 2px solid var(--gold);
+  border-radius: 50%;
 
   box-shadow:
     0 0 0 7px #d8ad550c,
     0 0 28px #d8ad5550;
 
   animation: avatarGlow 5s ease-in-out infinite alternate;
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+  background: #171717;
 }
 
 @keyframes avatarGlow {
@@ -335,22 +307,7 @@ body {
   }
 }
 
-.avatar {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
-
-  border-radius: 50%;
-  background: #171717;
-}
-
-/* =========================
-   PROFILE NAME
-========================= */
+/* NAME */
 
 h1 {
   margin: 10px 0;
@@ -379,16 +336,13 @@ h1 {
 }
 
 @keyframes nameShine {
-  to {
-    background-position: 250% center;
-  }
+  to { background-position: 250% center; }
 }
 
 .role {
   margin: 13px 0;
 
   color: var(--gold);
-
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -396,7 +350,6 @@ h1 {
 
 .bio {
   max-width: 320px;
-
   margin: 17px auto 25px;
 
   color: var(--muted);
@@ -404,34 +357,25 @@ h1 {
   line-height: 1.9;
 }
 
-/* =========================
-   SECTION TITLE
-========================= */
+/* SECTION */
 
 .section-title {
-  position: relative;
-
   margin: 28px 0 16px;
 
   color: var(--gold-light);
-
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 4px;
 }
-
-/* =========================
-   SOCIAL LINKS
-========================= */
 
 .links {
   display: grid;
   gap: 12px;
 }
 
-.social {
-  position: relative;
+/* SOCIAL BUTTONS */
 
+.social {
   display: flex;
   align-items: center;
   gap: 13px;
@@ -439,20 +383,16 @@ h1 {
   min-height: 65px;
   padding: 12px 14px;
 
+  color: var(--text);
   text-align: left;
   text-decoration: none;
-  color: var(--text);
 
   border: 1px solid #353024;
   border-radius: 14px;
 
-  background:
-    linear-gradient(110deg, #1b1a17, #10100e);
+  background: linear-gradient(110deg, #1b1a17, #10100e);
 
-  transition:
-    transform .3s ease,
-    border-color .3s ease,
-    box-shadow .3s ease;
+  transition: .3s ease;
 }
 
 .social:hover,
@@ -468,12 +408,9 @@ h1 {
   outline: none;
 }
 
-/* ICON */
-
 .icon {
   display: grid;
   flex: 0 0 39px;
-
   height: 39px;
 
   place-items: center;
@@ -484,12 +421,9 @@ h1 {
   background: linear-gradient(145deg, #3a2b12, #21190d);
 
   color: var(--gold-light);
-
   font-size: 20px;
   font-weight: 700;
 }
-
-/* LINK DETAILS */
 
 .details {
   flex: 1;
@@ -498,14 +432,12 @@ h1 {
 
 .link-title {
   display: block;
-
   font-size: 13px;
   font-weight: 700;
 }
 
 .link-subtitle {
   display: block;
-
   margin-top: 5px;
 
   color: var(--muted);
@@ -515,7 +447,6 @@ h1 {
 .arrow {
   color: var(--gold);
   font-size: 20px;
-
   transition: transform .3s;
 }
 
@@ -523,9 +454,7 @@ h1 {
   transform: translate(3px, -3px);
 }
 
-/* =========================
-   BOTTOM NOTE
-========================= */
+/* NOTE */
 
 .note {
   margin: 23px 0 0;
@@ -535,9 +464,7 @@ h1 {
   line-height: 1.9;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer {
   margin-top: 25px;
@@ -556,12 +483,9 @@ footer span {
   font-weight: 700;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
+/* MOBILE */
 
 @media (max-width: 380px) {
-
   body {
     padding: 20px 12px;
   }
@@ -582,15 +506,11 @@ footer span {
   .welcome-subtitle {
     letter-spacing: 2px;
   }
-
 }
 
-/* =========================
-   REDUCED MOTION
-========================= */
+/* ACCESSIBILITY */
 
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -598,7 +518,6 @@ footer span {
     animation-iteration-count: 1 !important;
     transition: none !important;
   }
-
 }
 
 </style>
@@ -606,9 +525,7 @@ footer span {
 
 <body>
 
-<!-- =========================
-     WELCOME SCREEN
-========================= -->
+<!-- WELCOME SCREEN -->
 
 <div class="welcome-screen" aria-label="Welcome">
 
@@ -617,8 +534,7 @@ footer span {
     <div class="welcome-line"></div>
 
     <h2 class="welcome-title">
-      Assalamu Alaikum wa<br>
-      Rahmatullahi wa Barakatuh
+      Assalamu Alaikum wa Rahmatullahi wa Barakatuh
     </h2>
 
     <p class="welcome-subtitle">
@@ -631,9 +547,7 @@ footer span {
 
 </div>
 
-<!-- =========================
-     MAIN PROFILE
-========================= -->
+<!-- MAIN PROFILE -->
 
 <main class="card">
 
@@ -669,8 +583,6 @@ footer span {
     CONNECT WITH ME
   </div>
 
-  <!-- SOCIAL LINKS -->
-
   <nav class="links" aria-label="Social media links">
 
     <!-- FACEBOOK -->
@@ -688,7 +600,6 @@ footer span {
       </span>
 
       <span class="arrow">↗</span>
-
     </a>
 
     <!-- TIKTOK -->
@@ -706,13 +617,12 @@ footer span {
       </span>
 
       <span class="arrow">↗</span>
-
     </a>
 
     <!-- WHATSAPP -->
 
     <a class="social"
-       href="https://wa.me/01843373682"
+       href="https://wa.me/8801843373682"
        target="_blank"
        rel="noopener noreferrer">
 
@@ -724,7 +634,6 @@ footer span {
       </span>
 
       <span class="arrow">↗</span>
-
     </a>
 
     <!-- CALL -->
@@ -737,11 +646,10 @@ footer span {
 
       <span class="details">
         <span class="link-title">Call Me</span>
-        <span class="link-subtitle">Tap to open phone dialer</span>
+        <span class="link-subtitle">01843373682</span>
       </span>
 
       <span class="arrow">↗</span>
-
     </a>
 
   </nav>
@@ -761,15 +669,9 @@ footer span {
 
 </main>
 
-<!-- =========================
-     AUTOMATIC YEAR
-========================= -->
-
 <script>
-
 document.getElementById("year").textContent =
   new Date().getFullYear();
-
 </script>
 
 </body>

@@ -5,196 +5,174 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080808">
 <meta name="description" content="MD JABED - Official Personal Profile">
+
 <title>MD JABED | Official Profile</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================
+   PREMIUM BLACK & GOLD THEME
+========================= */
+
 :root {
-  --gold: #dfb957;
-  --gold-light: #fff0bd;
   --bg: #080808;
-  --muted: #aaa49a;
-  --rgb: 255, 190, 65;
+  --card: #11110f;
+  --gold: #d8ad55;
+  --gold-light: #ffe7a6;
+  --gold-dark: #8e6828;
+  --text: #f8f4e9;
+  --muted: #aaa397;
+  --border: rgba(216,173,85,.28);
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html {
-  min-height: 100%;
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
-  padding: 28px 15px;
+  padding: 30px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'DM Sans', Arial, sans-serif;
-  color: #fff;
+  overflow-x: hidden;
+
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+
   background:
-    radial-gradient(ellipse at 50% 0%, #49371955, transparent 48%),
-    radial-gradient(ellipse at bottom, #1c160a, #080808 65%);
-  animation: backgroundRGB 12s ease-in-out infinite;
+    radial-gradient(ellipse at 50% 0%, #342710 0%, transparent 48%),
+    linear-gradient(145deg, #090909, #050505 75%);
+
+  animation: backgroundGlow 7s ease-in-out infinite alternate;
 }
 
-/* RGB COLOR ANIMATION */
-
-@keyframes backgroundRGB {
-  0%, 100% {
+@keyframes backgroundGlow {
+  from {
     background-color: #080808;
-    --rgb: 255, 190, 65;
   }
-  25% {
-    background-color: #100a13;
-    --rgb: 180, 70, 255;
-  }
-  50% {
-    background-color: #071116;
-    --rgb: 0, 210, 255;
-  }
-  75% {
-    background-color: #100d08;
-    --rgb: 255, 75, 110;
+  to {
+    background-color: #100d07;
   }
 }
 
-/* MAIN CARD */
-
-.card {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 440px;
-  padding: 32px 22px 24px;
-  text-align: center;
-  border: 1px solid #80632d;
-  border-radius: 27px;
-  background: linear-gradient(145deg, #191919, #090909);
-  box-shadow:
-    0 25px 75px #000b,
-    0 0 25px rgba(var(--rgb), .18);
-  animation: cardRGB 12s linear infinite;
-}
-
-@keyframes cardRGB {
-  0%, 100% {
-    border-color: #dfb957;
-    box-shadow: 0 25px 75px #000b, 0 0 25px rgba(255,190,65,.25);
-  }
-  25% {
-    border-color: #bd64ff;
-    box-shadow: 0 25px 75px #000b, 0 0 30px rgba(180,70,255,.30);
-  }
-  50% {
-    border-color: #00d9ff;
-    box-shadow: 0 25px 75px #000b, 0 0 30px rgba(0,210,255,.30);
-  }
-  75% {
-    border-color: #ff4b75;
-    box-shadow: 0 25px 75px #000b, 0 0 30px rgba(255,75,110,.30);
-  }
-}
-
-/* RGB TOP LINE */
-
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #dfb957,
-    #bd64ff,
-    #00d9ff,
-    #ff4b75,
-    #dfb957,
-    transparent
-  );
-  background-size: 300% 100%;
-  animation: rgbLine 5s linear infinite;
-}
-
-@keyframes rgbLine {
-  from { background-position: 0% 50%; }
-  to { background-position: 300% 50%; }
-}
-
-/* WELCOME SCREEN */
+/* =========================
+   WELCOME SCREEN
+========================= */
 
 .welcome-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 25px;
   text-align: center;
-  background: radial-gradient(ellipse at center, #35280e, #080808 72%);
-  animation: welcomeFade 1s ease 3.5s forwards;
+
+  background:
+    radial-gradient(ellipse at center, #30240e, #080808 75%);
+
+  animation: welcomeExit 1.2s ease 4.5s forwards;
 }
 
 .welcome-content {
   width: 100%;
-  max-width: 600px;
-  animation: welcomeText 1s ease both;
+  max-width: 650px;
+
+  animation: welcomeEntrance 1.4s cubic-bezier(.2,.8,.2,1) both;
 }
 
-.welcome-line,
-.welcome-bottom-line {
-  width: 100px;
+.welcome-line {
+  width: 0;
   height: 2px;
   margin: 25px auto;
+
   background: linear-gradient(
     90deg,
     transparent,
-    #dfb957,
-    #bd64ff,
-    #00d9ff,
-    #dfb957,
+    var(--gold-light),
+    var(--gold),
     transparent
   );
-  background-size: 250% 100%;
-  animation: rgbLine 4s linear infinite;
+
+  animation: lineExpand 1.5s ease .5s forwards;
 }
 
 .welcome-title {
-  margin: 0;
-  color: #f3d88b;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(25px, 6vw, 42px);
+  color: var(--gold-light);
+
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 6vw, 43px);
   line-height: 1.5;
-  text-shadow: 0 0 25px #dfb95755;
+
+  text-shadow: 0 0 25px #d8ad5560;
+
+  animation: titleAppear 1.5s ease .6s both;
 }
 
 .welcome-subtitle {
-  margin: 18px 0 0;
-  color: #d1c5a5;
-  font-size: 12px;
+  margin-top: 20px;
+
+  color: #c8b88f;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 4px;
+
+  opacity: 0;
+  animation: subtitleAppear 1.2s ease 1.6s forwards;
 }
 
-@keyframes welcomeText {
+@keyframes welcomeEntrance {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(35px) scale(.96);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes welcomeFade {
+@keyframes titleAppear {
+  from {
+    opacity: 0;
+    letter-spacing: 8px;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 1px;
+    filter: blur(0);
+  }
+}
+
+@keyframes subtitleAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lineExpand {
+  to {
+    width: min(250px, 75%);
+  }
+}
+
+@keyframes welcomeExit {
   to {
     opacity: 0;
     visibility: hidden;
@@ -202,165 +180,316 @@ body {
   }
 }
 
-/* PROFILE TEXT */
+/* =========================
+   MAIN PROFILE CARD
+========================= */
+
+.card {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  max-width: 440px;
+
+  padding: 34px 23px 25px;
+  text-align: center;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 25px;
+
+  background:
+    linear-gradient(145deg, #191814, #0b0b0a 65%);
+
+  box-shadow:
+    0 25px 80px #000b,
+    0 0 30px #d8ad5510;
+
+  animation: cardEntrance 1.2s ease 4.7s both,
+             cardGlow 7s ease-in-out infinite alternate;
+}
+
+/* GOLDEN LIGHT SWEEP */
+
+.card::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 65%;
+  height: 100%;
+
+  pointer-events: none;
+  z-index: -1;
+
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255,215,130,.035),
+    rgba(255,225,160,.13),
+    rgba(216,173,85,.04),
+    transparent
+  );
+
+  transform: skewX(-18deg);
+
+  animation: goldenSweep 6s ease-in-out infinite;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-dark),
+    var(--gold-light),
+    var(--gold),
+    transparent
+  );
+
+  box-shadow: 0 0 15px #d8ad5580;
+}
+
+@keyframes goldenSweep {
+  0%, 15% {
+    left: -120%;
+  }
+  65%, 100% {
+    left: 160%;
+  }
+}
+
+@keyframes cardGlow {
+  from {
+    border-color: rgba(216,173,85,.20);
+    box-shadow: 0 25px 80px #000b, 0 0 15px #d8ad5510;
+  }
+  to {
+    border-color: rgba(255,220,145,.65);
+    box-shadow: 0 25px 80px #000b, 0 0 32px #d8ad5528;
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   TOP LABEL
+========================= */
 
 .eyebrow {
   color: var(--gold);
+
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 4px;
 }
 
-/* PROFILE IMAGE */
+/* =========================
+   PROFILE IMAGE
+========================= */
 
 .avatar-wrap {
-  width: 135px;
-  height: 135px;
-  margin: 26px auto 20px;
-  padding: 4px;
-  border: 2px solid var(--gold);
+  position: relative;
+
+  width: 145px;
+  height: 145px;
+
+  margin: 27px auto 20px;
+  padding: 5px;
+
   border-radius: 50%;
-  box-shadow: 0 0 0 7px #dfb9570d, 0 0 35px #dfb95745;
-  overflow: hidden;
-  animation: avatarRGB 12s linear infinite;
+  border: 2px solid var(--gold);
+
+  box-shadow:
+    0 0 0 7px #d8ad550c,
+    0 0 28px #d8ad5550;
+
+  animation: avatarGlow 5s ease-in-out infinite alternate;
 }
 
-@keyframes avatarRGB {
-  0%, 100% {
-    border-color: #dfb957;
-    box-shadow: 0 0 25px #dfb95775;
+@keyframes avatarGlow {
+  from {
+    box-shadow: 0 0 20px #d8ad5530;
   }
-  25% {
-    border-color: #bd64ff;
-    box-shadow: 0 0 30px #bd64ff80;
-  }
-  50% {
-    border-color: #00d9ff;
-    box-shadow: 0 0 30px #00d9ff80;
-  }
-  75% {
-    border-color: #ff4b75;
-    box-shadow: 0 0 30px #ff4b7580;
+  to {
+    box-shadow: 0 0 38px #ffe7a680;
   }
 }
 
 .avatar {
   display: block;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
   object-position: center;
+
   border-radius: 50%;
-  background: #1b1b1b;
+  background: #171717;
 }
 
-/* NAME RGB SHINE */
+/* =========================
+   PROFILE NAME
+========================= */
 
 h1 {
-  margin: 8px 0;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 36px;
-  letter-spacing: 2px;
+  margin: 10px 0;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 37px;
+  font-weight: 800;
+  letter-spacing: 3px;
+
   background: linear-gradient(
     100deg,
-    #fff2c4,
-    #d4a746,
-    #ffffff,
-    #bd64ff,
-    #00d9ff,
-    #fff0b9
+    #a47a30,
+    #fff0b9,
+    #d8ad55,
+    #fff8dc,
+    #a47a30
   );
-  background-size: 300% auto;
+
+  background-size: 250% auto;
+
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: titleRGB 8s linear infinite;
+
+  animation: nameShine 5s linear infinite;
 }
 
-@keyframes titleRGB {
-  to { background-position: 300% center; }
+@keyframes nameShine {
+  to {
+    background-position: 250% center;
+  }
 }
 
 .role {
-  margin: 12px 0;
+  margin: 13px 0;
+
   color: var(--gold);
-  font-size: 11px;
+
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 2px;
 }
 
 .bio {
   max-width: 320px;
-  margin: 15px auto 23px;
-  color: #bcb6aa;
+
+  margin: 17px auto 25px;
+
+  color: var(--muted);
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
-/* SECTION */
+/* =========================
+   SECTION TITLE
+========================= */
 
 .section-title {
-  margin: 25px 0 14px;
-  color: var(--gold);
+  position: relative;
+
+  margin: 28px 0 16px;
+
+  color: var(--gold-light);
+
   font-size: 10px;
-  letter-spacing: 3px;
+  font-weight: 700;
+  letter-spacing: 4px;
 }
+
+/* =========================
+   SOCIAL LINKS
+========================= */
 
 .links {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* SOCIAL BUTTONS */
-
 .social {
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 13px;
-  min-height: 62px;
+
+  min-height: 65px;
   padding: 12px 14px;
-  color: #f8f5ee;
+
   text-align: left;
   text-decoration: none;
-  border: 1px solid #302b21;
-  border-radius: 13px;
-  background: linear-gradient(100deg, #202020, #121212);
-  transition: transform .3s, border-color .3s, box-shadow .3s;
+  color: var(--text);
+
+  border: 1px solid #353024;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(110deg, #1b1a17, #10100e);
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
 }
 
 .social:hover,
 .social:focus-visible {
-  transform: translateY(-4px) scale(1.015);
+  transform: translateY(-3px);
+
   border-color: var(--gold);
-  box-shadow: 0 0 18px rgba(var(--rgb), .4);
+
+  box-shadow:
+    0 7px 25px #d8ad551c,
+    0 0 15px #d8ad5520;
+
   outline: none;
-  animation: socialRGB 4s linear infinite;
 }
 
-@keyframes socialRGB {
-  0%, 100% { border-color: #dfb957; }
-  25% { border-color: #bd64ff; }
-  50% { border-color: #00d9ff; }
-  75% { border-color: #ff4b75; }
-}
+/* ICON */
 
 .icon {
   display: grid;
-  flex: 0 0 38px;
-  height: 38px;
+  flex: 0 0 39px;
+
+  height: 39px;
+
   place-items: center;
-  border: 1px solid #5c4725;
-  border-radius: 10px;
-  background: #302515;
+
+  border: 1px solid #80632d;
+  border-radius: 11px;
+
+  background: linear-gradient(145deg, #3a2b12, #21190d);
+
   color: var(--gold-light);
-  font-size: 21px;
+
+  font-size: 20px;
   font-weight: 700;
-  transition: .3s;
 }
 
-.social:hover .icon {
-  box-shadow: 0 0 15px rgba(var(--rgb), .5);
-  animation: socialRGB 4s linear infinite;
-}
+/* LINK DETAILS */
 
 .details {
   flex: 1;
@@ -368,12 +497,17 @@ h1 {
 }
 
 .link-title {
+  display: block;
+
   font-size: 13px;
   font-weight: 700;
 }
 
 .link-subtitle {
+  display: block;
+
   margin-top: 5px;
+
   color: var(--muted);
   font-size: 11px;
 }
@@ -381,65 +515,103 @@ h1 {
 .arrow {
   color: var(--gold);
   font-size: 20px;
+
+  transition: transform .3s;
 }
+
+.social:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+/* =========================
+   BOTTOM NOTE
+========================= */
 
 .note {
-  margin: 21px 0 0;
-  color: #8e887c;
+  margin: 23px 0 0;
+
+  color: #928b7e;
   font-size: 11px;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-  margin-top: 23px;
-  padding-top: 17px;
-  border-top: 1px solid #332b1e;
-  color: #817a6d;
+  margin-top: 25px;
+  padding-top: 19px;
+
+  border-top: 1px solid #3b3020;
+
+  color: #898174;
   font-size: 10px;
-  letter-spacing: 1px;
+  line-height: 2;
+  letter-spacing: 1.5px;
 }
 
 footer span {
-  color: var(--gold);
+  color: var(--gold-light);
+  font-weight: 700;
 }
 
-/* MOBILE RESPONSIVE */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
+
+  body {
+    padding: 20px 12px;
+  }
+
   .card {
-    padding: 27px 15px 20px;
+    padding: 28px 16px 22px;
+  }
+
+  .avatar-wrap {
+    width: 125px;
+    height: 125px;
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 31px;
   }
 
   .welcome-subtitle {
     letter-spacing: 2px;
   }
+
 }
 
-/* ACCESSIBILITY */
+/* =========================
+   REDUCED MOTION
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     transition: none !important;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- WELCOME SCREEN -->
+<!-- =========================
+     WELCOME SCREEN
+========================= -->
 
 <div class="welcome-screen" aria-label="Welcome">
+
   <div class="welcome-content">
 
     <div class="welcome-line"></div>
@@ -453,12 +625,15 @@ footer span {
       WELCOME TO MY OFFICIAL PROFILE
     </p>
 
-    <div class="welcome-bottom-line"></div>
+    <div class="welcome-line"></div>
 
   </div>
+
 </div>
 
-<!-- MAIN PROFILE -->
+<!-- =========================
+     MAIN PROFILE
+========================= -->
 
 <main class="card">
 
@@ -486,7 +661,8 @@ footer span {
 
   <p class="bio">
     Welcome to my official profile.<br>
-    Stay focused. Stay original. Let your work speak.
+    Stay focused. Stay original.<br>
+    Let your work speak.
   </p>
 
   <div class="section-title">
@@ -495,7 +671,7 @@ footer span {
 
   <!-- SOCIAL LINKS -->
 
-  <nav class="links" aria-label="Social media and contact links">
+  <nav class="links" aria-label="Social media links">
 
     <!-- FACEBOOK -->
 
@@ -508,7 +684,7 @@ footer span {
 
       <span class="details">
         <span class="link-title">Facebook</span>
-        <div class="link-subtitle">Visit my profile</div>
+        <span class="link-subtitle">Visit my profile</span>
       </span>
 
       <span class="arrow">↗</span>
@@ -526,7 +702,7 @@ footer span {
 
       <span class="details">
         <span class="link-title">TikTok</span>
-        <div class="link-subtitle">@m.r.jabed.2.0</div>
+        <span class="link-subtitle">@m.r.jabed.2.0</span>
       </span>
 
       <span class="arrow">↗</span>
@@ -536,7 +712,7 @@ footer span {
     <!-- WHATSAPP -->
 
     <a class="social"
-       href="https://wa.me/YOUR_PHONE_NUMBER"
+       href="https://wa.me/01843373682"
        target="_blank"
        rel="noopener noreferrer">
 
@@ -544,7 +720,7 @@ footer span {
 
       <span class="details">
         <span class="link-title">WhatsApp</span>
-        <div class="link-subtitle">Message me directly</div>
+        <span class="link-subtitle">Message me directly</span>
       </span>
 
       <span class="arrow">↗</span>
@@ -554,14 +730,14 @@ footer span {
     <!-- CALL -->
 
     <a class="social"
-       href="tel:+YOUR_PHONE_NUMBER"
+       href="tel:+8801843373682"
        aria-label="Call MD JABED">
 
       <span class="icon">☎</span>
 
       <span class="details">
         <span class="link-title">Call Me</span>
-        <div class="link-subtitle">Tap to open phone dialer</div>
+        <span class="link-subtitle">Tap to open phone dialer</span>
       </span>
 
       <span class="arrow">↗</span>
@@ -585,11 +761,15 @@ footer span {
 
 </main>
 
-<!-- AUTOMATIC YEAR -->
+<!-- =========================
+     AUTOMATIC YEAR
+========================= -->
 
 <script>
-document.getElementById('year').textContent =
+
+document.getElementById("year").textContent =
   new Date().getFullYear();
+
 </script>
 
 </body>
